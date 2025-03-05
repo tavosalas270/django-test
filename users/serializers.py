@@ -6,10 +6,11 @@ from .models import CustomUser
 
 class RegisterUserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
+    is_superuser = serializers.BooleanField(required=False)
 
     class Meta:
         model = CustomUser
-        fields = ['full_name', 'email', 'password']
+        fields = ['full_name', 'email', 'password', 'is_superuser']
     
     def validate_email(self, value):
         if not value:
